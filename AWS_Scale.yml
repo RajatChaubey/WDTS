@@ -1,0 +1,54 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  SubnetID:
+    Type: AWS::EC2::Subnet::Id
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+	
+    	
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance                     
+    Properties:
+      ImageId:ami-0ff8a91507f77f867
+      AMIID:ami-c55673a0
+      InstanceType: m1.small
+      KeyName: !Ref KeyName
+      SecurityGroupIds: myEC2SecurityGroup
+      SubnetId: !Ref SubnetID
+
+SimpleConfig:
+  Type: AWS::AutoScaling::LaunchConfiguration
+  Properties:
+    ImageId: ami-0ff8a91507f77f867
+    SecurityGroups: myEC2SecurityGroup
+    InstanceType: m1.small
+    BlockDeviceMappings:
+    - DeviceName: "/dev/sdk"
+      Ebs:
+        VolumeSize: '50'
+    - DeviceName: "/dev/sdc"
+      VirtualName: ephemeral0
+	   
+
+ScaleUpPolicy:
+  Type: AWS::AutoScaling::ScalingPolicy
+  Properties:
+    AdjustmentType: ChangeInCapacity
+    AutoScalingGroupName:asGroup
+    Cooldown: '1'
+    ScalingAdjustment: '1'
+CPUAlarmHigh:
+  Type: AWS::CloudWatch::Alarm
+  Properties:
+    EvaluationPeriods: '1'
+    Statistic: Average
+    Threshold: '10'
+    AlarmDescription: Alarm if CPU too high or metric disappears indicating instance is down
+    Period: '60'
+    AlarmActions: ScaleUpPolicy
+    Namespace: AWS/EC2
+    ComparisonOperator: GreaterThanThreshold
+    MetricName: CPUUtilization
+...
