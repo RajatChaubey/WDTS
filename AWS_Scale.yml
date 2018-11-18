@@ -30,8 +30,7 @@ SimpleConfig:
         VolumeSize: '50'
     - DeviceName: "/dev/sdc"
       VirtualName: ephemeral0
-	   
-
+      
 ScaleUpPolicy:
   Type: AWS::AutoScaling::ScalingPolicy
   Properties:
