@@ -5,8 +5,7 @@ Parameters:
     Type: AWS::EC2::Subnet::Id
   KeyName:
     Type: AWS::EC2::KeyPair::KeyName
-	
-    	
+    
 Resources:
   EC2Instance:
     Type: AWS::EC2::Instance                     
