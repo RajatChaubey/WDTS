@@ -1,0 +1,330 @@
+Notes
+*****
+By	Date		Description
+====	==========	=============================
+mxj1	22-Jan-2009	Instructions for NetExpert 6.2.1 code layout
+pxg1	19-Jan-2010	Instructions for NetExpert 6.3.0 code layout
+
+
+Table of Contents
+*****************
+1. NetExpert Code Layout
+1.1. Prepare Code Layout Area
+1.2. Install NetExpert
+2. Expert Area Log
+2.1. HP Expert Area Log
+...
+
+*****************
+
+
+1. NetExpert Code Layout
+************************
+
+1.1. Prepare Code Layout Area
+==============================
+* Login to Solaris machine as qaadmin
+* Go to expert area
+    cd /net/tcsnas01/vol/nxqa/vsm/sol8
+* Make new expert area (use exact verison such as expert.a.b.c.d)
+    mkdir expert.6.3
+    chmod 755 expert.6.3
+* Untar the NetExpert installable (use exact version such as netexpert_a.b.c.d_hp11.tar)
+    cd /net/tcsnas01/vol/nxqa/vsm/sol8
+    tar -xvf /net/tcsnas01/vol/nxqa/qahandoff/nxmedia1_6.3.x.x_sol8.tar .
+    tar -xvf /net/tcsnas01/vol/nxqa/qahandoff/nxmedia2_6.3.x.x_sol8.tar .
+
+1.2. Install NetExpert
+======================
+* Set DISPLAY environment variable
+    On login host execute
+      echo $DISPLAY	# note <value>
+    On narmada
+      setenv DISPLAY <login hostname>:<value>
+* Launch installer
+    su -
+    cd nxmedia1_6.3_sol8
+    ./install.bin
+
+* "Objective Systems Integrators Service Assurance - Introduction" window
+    - click Next
+
+* "Objective Systems Integrators Service Assurance - License Agreement" window
+    - select "I accept..." radial and click Next
+
+* "Objective Systems Integrators Service Assurance - OSS Support" window
+    - click Next
+
+* "Would you like to install Open Source" dialog
+    - click Yes
+
+* "Objective Systems Integrators Service Assurance - Open Source Code" window
+    /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3/ThirdParty
+
+* "Objective Systems Integrators Service Assurance" - Install Type" window
+    - select "Install and Configure NetExpert" and Press Next
+* "Objective Systems Integrators Service Assurance - Choose Components" window
+  SOL:
+    - select Install Set as Products
+    - select all components
+    - click Next
+
+* "Objective Systems Integrators Service Assurance - Account Inormation" window
+    - User Account Name   = qaadmin
+    - Group Account Name  = qa
+    - User Home Directory = /home/qaadmin
+    - click next
+
+* "Objective Systems Integrators Service Assurance - Choose Installation Folder" window
+    - $OSI_HOME = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3
+    - click Next
+
+* "Objective Systems Integrators Service Assurance - Database Information" window
+    - select NO radial
+    - click Next
+
+* "Objective Systems Integrators Service Assurance - Objective Systems Integrators Environment" window
+    - LM_LICENSE_FILE = leave blank
+    - OSI_SYSTEM      = leave blank
+    - OSI_IDEAS_HOST  = leave blank
+    - click Next
+
+* "Objective Systems Integrators Service Assurance - Pre-Installation Summary" window
+    - Verify that Product Name = Objective Systems Integrators Service Assurance
+    - Verify that Product Components = Server
+                                       Gateway
+                                       Client
+    - Verify that Install Folder($OSI_HOME) = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x   # Replace x.x corrwsponding to NX version
+    - click Install
+
+* "Objective Systems Integrators Server Components - Choose Components" window
+    - select Install Set as Full(TYPICAL) Installation
+    - select all components
+    - click Next
+
+* "Objective Systems Integrators Server Components - Choose Installation Folder" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+    - click Next
+
+* "Objective Systems Integrators Server Components - Component Information" window
+    - View component and version information
+    - click Next
+
+* "Objective Systems Integrators Server Components - Pre-Installation Summary" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+    - Disk Space Required is less than Disk Space Available
+    - click Install
+
+* "Objective Systems Integrators Server Components - License Manager" window
+    - Select No radial
+    - click Next
+
+* "Objective Systems Integrators Server Components - Objective Systems Integrators Server Components Environment" window
+    - OSI_IDEAS_HOST = leave blank
+    - Click Next
+    - Ignore warning and click Continue
+
+* "Objective Systems Integrators Server Components - Installation Summary" window
+    - Verify that installation log location is /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/Install/Log
+    - Click Done 
+
+* "Objective Systems Integrators Gateway Components - Choose Components" window
+    - select Install Set as Full(TYPICAL) Installation
+    - select all components
+    - click Next
+
+* "Objective Systems Integrators Gateway Components - Choose Installation Folder" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+    - click Next
+
+* "Objective Systems Integrators Gateway Components - Component Information" window
+    - View component and version information
+    - click Next
+
+* "Objective Systems Integrators Gateway Components - Pre-Installation Summary" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+
+    - Disk Space Required is less than Disk Space Available
+    - click Install
+
+* "Objective Systems Integrators Gateway Components - SNMP Port Information" window
+    - Directory where snmpinfo.dat is located = /etc/srconf/mgr 
+    - Select port for SNMP Communication      = 161
+    - Select port for SNMP Trap Communication = 162
+    - click Next
+
+* "Objective Systems Integrators Gateway Components - Database Error" window
+    - Ignore error by clicking Next
+
+* "Objective Systems Integrators Gateway Components - Data Archiver" window
+    - Do not check Run the Install.da program
+    - Click Next
+    - Ignore error and click Next
+
+* "Objective Systems Integrators Gateway Components - Installation Summary" window
+    - Verify that installation log location is /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+
+    - Click Done 
+
+* "Objective Systems Integrators Client Components - Choose Components" window
+    - select Install Set as Full(TYPICAL) Installation
+    - select all components
+    - click Next
+
+* "Objective Systems Integrators Client Components - Choose Installation Folder" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+
+    - click Next
+
+* "Objective Systems Integrators Client Components - Component Information" window
+    - View component and version information
+    - click Next
+
+* "Objective Systems Integrators Client Components - Pre-Installation Summary" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+    - Disk Space Required is less than Disk Space Available
+    - click Install
+    - Select English and click OK for Object Browser
+
+* "NetExpert Object Browser - Introduction" window
+    - click Next
+
+* "NetExpert Object Browser - Pre-Installation Summary" window
+    - Verify that Product Name = NetExpert Object Browser
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/objectBrowser
+    - Verify that JVM Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/objectBrowser/jre
+    - Verify that Initial Memory Size = 67xxxxxx
+    - Disk Space Required is less than Disk Space Available
+    - click Install
+
+* "NetExpert Object Browser - Install Complete" window
+    - click Done
+
+* "NetExpert Command Center - Introduction" window
+    - click Next
+
+* "NetExpert Command Center - NCC Server Host Name" window
+    - NetExpert Server Host = leave blank
+    - click next
+
+* "NetExpert Command Center - Use Desktop User ID" window
+    - Do not select Use User Name from Desktop
+    - click next
+
+* "NetExpert Command Center - Pre-Installation Summary" window
+    - Verify that Product Name                  = NetExpert Command Center
+    - Verify that Installation Folder           = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/NCC
+    - Verify that NCC Server Host Name          = blank
+    - Verify that Use Desktop Name For NCC User = No
+    - Verify that Disk Space Required is less than Disk Space Available
+    - click Install
+
+* "NetExpert Command Center - Install Complete" window
+    - click Done
+
+    ----Complete the nxmedia1 installation 
+    ------- Do not exit from the root login
+######################################## Install nxmedia2 ############################################
+    cd nxmedia2_6.3_sol8
+    ./install.bin
+
+* "Objective Systems Integrators Service Assurance - Introduction" window
+    - click Next
+
+* "Objective Systems Integrators Service Assurance - License Agreement" window
+    - select "I accept..." radial and click Next
+
+* "Objective Systems Integrators Service Assurance - OSS Support" window
+    - click Next
+
+* "Objective Systems Integrators Service Assurance - Choose Components" window
+	Select - Optional
+		- Application	 
+* "Objective Systems Integrators Service Assurance - Enter Extraction Key" window
+  SOL:
+    - Extraction Key = 604-8E2227FBFDAEEE4-79
+    - click next
+
+* "Objective Systems Integrators Service Assurance - Account Inormation" window
+    - User Account Name   = qaadmin
+    - Group Account Name  = qa
+    - User Home Directory = /home/qaadmin
+    - click next
+
+* "Objective Systems Integrators Service Assurance - Choose Installation Folder" window
+    - $OSI_HOME = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3
+    - click Next
+
+
+* "Objective Systems Integrators Service Assurance - Pre-Installation Summary" window
+    - Verify that Product Name = Objective Systems Integrators Service Assurance
+    - Verify that Product Components = Optional
+                                       Applications
+    - Verify that Install Folder($OSI_HOME) = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x   # Replace x.x corrwsponding to NX version
+    - click Install
+
+* "Objective Systems Integrators Optional Components - Component Information" window
+    - View component and version information
+    - click Next
+
+* "Objective Systems Integrators Optional Components - Pre-Installation Summary" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+    - Disk Space Required is less than Disk Space Available
+    - click Install
+
+* "Objective Systems Integrators Optional Components - Installation Summary" window
+    - Verify that installation log location is /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/Install/Log
+    - Click Done 
+
+* "Objective Systems Integrators Applications - Choose Installation Folder" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x
+    - click Next
+
+* "Objective Systems Integrators Applications - Choose Components" window
+    - select Install Set as Full(TYPICAL) Installation
+    - select all components
+    - click Next
+
+* "Objective Systems Integrators Applications - Component Information" window
+    - View component and version information
+    - click Next
+
+* "Objective Systems Integrators Applications - Pre-Installation Summary" window
+    - Verify that Installation Folder = /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x 
+    - Disk Space Required is less than Disk Space Available
+    - click Install
+
+* "Objective Systems Integrators Applications - IPA Configuration" window
+    - View message
+      "The following scripts need to be run manually in order to finish the installation
+      of IPA Engine and/or IPA Auto-Discovery:
+    - IP Assurance Engine /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/snmp/ad/install/postinstall.scr
+    - IP Assurance Auto-Discovery /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/Apps/IPA/setup/server/unix/IPAInstall" 
+    - click Next
+
+* "Objective Systems Integrators Applications - Installation Summary" window
+    - Verify that installation log location is /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/Install/Log
+    - Ignore error message
+    - Click Done 
+
+
+* "Objective Systems Integrators Service Assurance - Summary of Installed Components" window
+    - Click Next
+
+* "Objective Systems Integrators Service Assurance - Install Complete" window
+    - Verify that installation log location is /net/tcsnas01/vol/nxqa/vsm/sol8/expert.6.3.x.x/Install/Log
+    - Click Done 
+
+
+2. Expert Area Log
+******************
+
+2.1. Solaris Expert Area Log
+=======================
+Expert Area = /net/tcsnas01/vol/nxqa/vsm/sol8
+
+#	Date		User		Description
+---------------------------------------------------
+1. 	12/29/2009   	pxg1		expert.6.3.0.0_BETA_1 
+2. 	01/18/2010   	pxg1		expert.6.3.0.1
+****
